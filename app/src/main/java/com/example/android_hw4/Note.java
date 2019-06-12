@@ -8,12 +8,34 @@ public class Note {
     public String content;
 
     public Note(){}
-    public Note(int i, String title, String content) {
+    public Note(int id, String title, String content) {
         this.id = id;
         this.title = title;
         this.content = content;
     }
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String name) {
+        this.title = name;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String str) {
+        this.content = str;
+    }
     public static String TABLE_NAME = "Notes";
     public static String CREATE_TABLE =
             "CREATE TABLE " + TABLE_NAME + " (id INTEGER PRIMARY KEY AUTOINCREMENT," +
