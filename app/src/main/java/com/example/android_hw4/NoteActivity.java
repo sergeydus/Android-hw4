@@ -11,6 +11,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,8 +27,16 @@ public class NoteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("asd", "onCreate: creating");
         setContentView(R.layout.activity_note);
 
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+        // put your code here...
+        //recreate();
+        Log.d("onresune", "onResume: RESUMED");
         listView = findViewById(R.id.simpleListView);
         Button EditButton = findViewById(R.id.EditNoteButton);
         EditButton.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +52,7 @@ public class NoteActivity extends AppCompatActivity {
                     "content"+i);
             db.getWritableDatabase().execSQL(p.getSQLInsertString());
         }*/
-        db.updateData("1","nigger","wapon","");
+        //db.updateData("1","nigger","wapon","");
         ArrayList<Note> notes = new ArrayList<>();
         Cursor c = db.getReadableDatabase().rawQuery(Note.SELECT_ALL,
                 null);
@@ -59,10 +68,16 @@ public class NoteActivity extends AppCompatActivity {
 
         CustomListAdapter customAdapter = new CustomListAdapter(this, notes);
         listView.setAdapter(customAdapter);
-
+    }
+    public void OnDonationsClick(View view) {
+        Intent intent = new Intent(this, DonationActivity.class);
+        startActivity(intent);
     }
     public void openEditWindow(){
         Intent intent = new Intent(this, EditNoteActivity.class);
+        //Intent intent = new Intent(v.getContext(), EditNoteActivity.class);
+        intent.putExtra("IsCreateNote",true);
+
         // intent.setFlags(intent.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY); // Adds the FLAG_ACTIVITY_NO_HISTORY flag
         startActivity(intent);
     }
