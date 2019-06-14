@@ -25,17 +25,18 @@ public class DonationActivity extends AppCompatActivity {
     }
     public void donate(View view){
         EditText ed1= findViewById(R.id.donate);
-        TextView tv1= findViewById(R.id.total_donate);
+        TextView tv1=findViewById(R.id.total_donate);
+        TextView tv3=findViewById(R.id.enteryourdonation);
         Button b1= findViewById(R.id.clickDonate);
         GifImageView imageView= findViewById(R.id.dancing);
         TextView tv2= findViewById(R.id.thanks);
         Double num1= Double.valueOf(ed1.getText().toString());
-        Double num2= Double.valueOf(tv1.getText().toString());
 
-        tv1.setVisibility(View.GONE);
-        b1.setVisibility(View.INVISIBLE);
+        ed1.setVisibility(View.GONE);
+        b1.setVisibility(View.GONE);
+        tv3.setVisibility(View.GONE);
 
-        Double sum=num1+num2;
+        Double sum=num1+sum_donation;
         sum_donation=sum;
         tv1.setText(sum.toString()+"₪");
         imageView.setVisibility(View.VISIBLE);

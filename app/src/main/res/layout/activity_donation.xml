@@ -38,16 +38,23 @@
             android:id="@+id/dancing"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:src="@drawable/dancing"
+
             android:visibility="gone"/>
 
         <TextView
             android:id="@+id/thanks"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             android:layout_gravity="center"
-            android:text="Thank You For Donating" />
+            android:layout_marginTop="20dp"
+            android:background="@android:color/holo_orange_dark"
+            android:fontFamily="sans-serif-black"
+            android:text="Thank You For Donating"
+            android:textAlignment="center"
+            android:textSize="22dp"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/enteryourdonation"
@@ -59,7 +66,6 @@
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:text="Enter Your Donation:"
-            android:visibility="visible"
             android:background="@color/colorPrimary"/>
 
         <EditText
@@ -71,7 +77,6 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:ems="10"
-            android:visibility="visible"
             android:inputType="numberSigned|numberDecimal" />
 
         <Button
