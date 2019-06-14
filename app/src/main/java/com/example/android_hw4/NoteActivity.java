@@ -22,14 +22,14 @@ import java.util.ArrayList;
 
 public class NoteActivity extends AppCompatActivity {
 
-
+    double sum_donation=0;
     ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d("asd", "onCreate: creating");
         setContentView(R.layout.activity_note);
-
+        sum_donation=getIntent().getDoubleExtra("donation",0);
     }
     @Override
     public void onResume(){
@@ -71,6 +71,7 @@ public class NoteActivity extends AppCompatActivity {
     }
     public void OnDonationsClick(View view) {
         Intent intent = new Intent(this, DonationActivity.class);
+        intent.putExtra("donation",sum_donation);
         startActivity(intent);
     }
     public void openEditWindow(){
