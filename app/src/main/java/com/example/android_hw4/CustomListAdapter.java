@@ -3,14 +3,17 @@ package com.example.android_hw4;
 import android.content.Context;
 import android.content.Intent;
 import android.database.DataSetObserver;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.Date;
 
 class CustomListAdapter implements ListAdapter {
     ArrayList<Note> arrayList;
@@ -63,10 +66,28 @@ class CustomListAdapter implements ListAdapter {
             TextView idtext=convertView.findViewById(R.id.textView1);
             TextView tittle=convertView.findViewById(R.id.textView2);
             TextView contenttext=convertView.findViewById(R.id.textView3);
+            TextView datetext=convertView.findViewById(R.id.textView4);
+            TextView statustext=convertView.findViewById(R.id.textView5);
+            Button EditButton =convertView.findViewById(R.id.SmallEditButton);
+            Date date= new Date(subjectData.date);
+            Date curr= new Date();
+
+            float days = (float) ((curr.getTime()-subjectData.date)) / (1000*60*60*24);
+            if(days<2)
+            {
+                idtext.setBackgroundResource(R.color.red);
+                EditButton.setVisibility(View.GONE);
+                statustext.setText("Sent");
+            }
+            else{
+                statustext.setText("Recieved");
+            }
+            datetext.setText(date.toString());
+            Log.d("List", "Tried showing:"+subjectData.toString()+" Days are: "+days);
             tittle.setText(subjectData.title);
             idtext.setText(String.valueOf(subjectData.id));
+
             contenttext.setText(subjectData.getContent());
-            Button EditButton =convertView.findViewById(R.id.SmallEditButton);
             EditButton.setOnClickListener(new NewListener(subjectData.id,subjectData.title,subjectData.getContent()));
         }
         return convertView;
@@ -91,6 +112,7 @@ class NewListener implements View.OnClickListener
     int id;
     String title;
     String content;
+
     public NewListener(int id,String title,String content) {
         this.id = id;
         this.content=content;

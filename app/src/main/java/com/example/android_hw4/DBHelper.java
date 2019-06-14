@@ -6,12 +6,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.Date;
+
+
 public class DBHelper extends SQLiteOpenHelper {
 
     public static int VERSION = 1;
 
     public DBHelper(Context context) {
-        super(context, "db3", null, VERSION);
+        super(context, "db4", null, VERSION);
     }
 
 
@@ -36,9 +39,12 @@ public class DBHelper extends SQLiteOpenHelper {
     }
     public boolean AddData(String title,String content,String marks) {
         SQLiteDatabase db = this.getWritableDatabase();
+        Date date= new Date();
+
         Note p = new Note(1,
                 title,
-                content);
+                content,
+                date.getTime());
         db.execSQL(p.getSQLInsertString());
         Log.d("AddData", "Tried adding:"+p.toString());
         return true;
