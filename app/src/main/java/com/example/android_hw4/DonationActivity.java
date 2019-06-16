@@ -15,16 +15,15 @@ import java.nio.DoubleBuffer;
 import pl.droidsonroids.gif.GifImageView;
 
 public class DonationActivity extends AppCompatActivity {
-    float sum_donation;
+    float total;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donation);
         SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        sum_donation=(float)getIntent().getDoubleExtra("donation",0);
         TextView tv=findViewById(R.id.total_donate);
-        float total=(float)sharedPreferences.getFloat("value",(float)0);
+        total=(float)sharedPreferences.getFloat("value",(float)0);
         tv.setText(String.valueOf((float)total)+"₪");
     }
     public void donate(View view){
@@ -43,10 +42,10 @@ public class DonationActivity extends AppCompatActivity {
         b1.setVisibility(View.GONE);
         tv3.setVisibility(View.GONE);
 
-        float sum=num1+sum_donation;
-        editor.putFloat("value",(float)sum_donation+(float)num1);
+        float sum=num1+total;
+        editor.putFloat("value",((float)total+(float)num1));
         editor.commit();
-        sum_donation=sum;
+        total=sum;
         tv1.setText(String.valueOf(sum)+"₪");
         imageView.setVisibility(View.VISIBLE);
         tv2.setVisibility(View.VISIBLE);
@@ -54,7 +53,6 @@ public class DonationActivity extends AppCompatActivity {
     }
     public void ret(View view){
         Intent intent= new Intent(this, NoteActivity.class);
-        intent.putExtra("donation",sum_donation);
         startActivity(intent);
     }
 }
