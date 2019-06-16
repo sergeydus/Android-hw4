@@ -48,4 +48,7 @@ public class DonationActivity extends AppCompatActivity {
         intent.putExtra("donation",sum_donation);
         startActivity(intent);
     }
+    public void onBackPressed(){
+
+    }
 }
